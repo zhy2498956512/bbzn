@@ -38,6 +38,12 @@ public interface GrantNumberRecordDao {
                                                      @Param("ps") int pageSize,
                                                      @Param("ci") int companyId);
 
+    @Select("select * from b_grant_number_record where grant_number_record_id = #{grantNumberRecordId}")
+    GrantNumberRecord getGrantNumberRecord(int grantNumberRecordId);
+
+    @Update("Update b_grant_number_record set grant_number_record_see = 1 where grant_number_record_id = #{grantNumberRecordId}")
+    int updateSee(int grantNumberRecordId);
+
     @Insert("insert into b_grant_number_record(grant_number_record_amount,grant_number_record_remark,grant_number_record_applytime,grant_number_record_feedbacktime,grant_number_record_type,company_id) "+
             " value(#{g.grantNumberRecordAmount},#{g.grantNumberRecordRemark},#{g.grantNumberRecordApplytime},#{g.grantNumberRecordFeedbacktime},#{g.grantNumberRecordType},#{g.companyId})")
     int saveGrantRecord(@Param("g") GrantNumberRecord grantNumberRecord);

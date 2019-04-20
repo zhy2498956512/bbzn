@@ -32,6 +32,14 @@ public class GrantNumberRecordServiceImpl implements GrantNumberRecordService {
         return grantNumberRecordDao.getSeeList((pageNum-1)*pageSize,pageSize,companyId);
     }
 
+    public GrantNumberRecord getGrantNumberRecord(int grantNumberRecordId){
+        return grantNumberRecordDao.getGrantNumberRecord(grantNumberRecordId);
+    }
+
+    public int updateSee(int grantNumberRecordId){
+        return grantNumberRecordDao.updateSee(grantNumberRecordId);
+    }
+
     public int saveGrantRecord(GrantNumberRecord grantNumberRecord){
         return grantNumberRecordDao.saveGrantRecord(grantNumberRecord);
     }

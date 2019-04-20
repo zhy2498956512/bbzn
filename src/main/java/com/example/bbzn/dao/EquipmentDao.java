@@ -1,11 +1,9 @@
 package com.example.bbzn.dao;
 
 import com.example.bbzn.pojo.Equipment;
-import com.sun.corba.se.spi.presentation.rmi.IDLNameTranslator;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository

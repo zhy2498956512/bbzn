@@ -91,18 +91,18 @@
 <div style="width: 100%;height: 600px;float: left;border-top: #00F7DE 2px solid;background-color: #fff;">
     <div style="float: left;width: 96%;height: 40px;border:1px solid #c8cbcf;margin-left: 2%;background-color: #fff;margin-top: 30px;">
         <div style="width: 10%;height: 40px;float: left;line-height: 40px;text-align: center ;font-size: 13px;font-weight: bold; ">授权数量</div>
-        <div style="width: 30%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">授权备注</div>
-        <div style="width: 30%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">授权反馈</div>
+        <div style="width: 60%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">授权备注</div>
         <div style="width: 15%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">申请时间</div>
         <div style="width: 15%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">反馈时间</div>
     </div>
-    <div class="row pre-scrollable" style="float: left;width: 97.5%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="list">
+    <div class="pre-scrollable" style="float: left;width: 97.5%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="list">
+
     </div>
-    <div class="m-style M-box3" style="float: right;margin-top:20px ;">
+    <div style="float: right;margin-top:20px ;">
         <span id="record0"></span>
-        <input type="hidden"><input class="record" type="button" value="上页"><span id="totalPage"></span>
-        <input type="hidden"><input class="record" type="button" value="下页">
-        <input type="text" width="20px" onkeyup="value=value.replace(/[^0-9]/g,'')"><input type="button" class="record" value="跳转">
+        <input type="hidden" value="1"><input class="record" type="button" value="上页"><span id="totalPage"></span>
+        <input type="hidden" value="1"><input class="record" type="button" value="下页">
+        <input type="text" style="height:30px;width:40px" value="1" onkeyup="value=value.replace(/[^0-9]/g,'')">&nbsp;<input type="button" class="record" value="跳转">
     </div>
 </div>
 
@@ -122,15 +122,49 @@
             type: "POST",
             dataType: "json",
             success: function (msg) {
-                var data = eval(msg);//将msg化为数
+                var pageNum = msg.pageNum;              //当前页
+                var totalRecord = msg.totalRecord;      //总条数
+                var totalPage = msg.totalPage;          //总页数
+                var pageSize = msg.pageSize;            //每页显示的记录数
+                $("#totalPage").html(pageNum+"/"+totalPage);
+                $("#record0").html("共"+totalRecord+"条记录");
+                var data = msg.list;
                 var num = 1;
                 var html = "";
                 $.each(data, function (num) {
-                    var projectId = data[num].projectId;
-                    var projectName = data[num].projectName;
-                    html = html + "<option value='"+projectId+"'>"+projectName+"</option>";
+                    var grantNumberRecordId = data[num].grantNumberRecordId;
+                    var grantNumberRecordAmount = data[num].grantNumberRecordAmount;
+                    var grantNumberRecordRemark = data[num].grantNumberRecordRemark;
+                    var applytime = data[num].applytime;
+                    var feedbacktime = data[num].feedbacktime;
+                    var grantNumberRecordSee = data[num].grantNumberRecordSee;
+                    html = html + "<a  style='width: 100%;height: 50px;' href='api/grantNumberRecord/getNewsDetails?grantNumberRecordId="+grantNumberRecordId+"'><div>" +
+                        "                <div style='border-bottom: 1px solid #B9BBBE;cursor: pointer;width: 10%;height: 50px;" +
+                        "                        border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;'>";
+                        if(grantNumberRecordSee==0){
+                            html = html + "<span style='color: red;margin-left: 5px;margin-top: -25px;'>*</span>";
+                        }
+                        html = html + grantNumberRecordAmount+"                </div>" +
+                        "                <div style='width: 60%;height: 50px;float: left;border-bottom: 1px solid #B9BBBE;text-align: center;line-height: 50px;'>";
+                        if(grantNumberRecordRemark==""||grantNumberRecordRemark==null){
+                            html = html + "暂无数据";
+                        }else{
+                            html = html + grantNumberRecordRemark;
+                        }
+                        html = html + "                </div>" +
+                        "                <div style='width: 15%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;'>" ;
+                        if(applytime==""||applytime==null){
+                            html = html + "暂无数据";
+                        }else{
+                            html = html + applytime;
+                        }
+                        html = html + "                </div>" +
+                        "                <div style='width: 15%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;'>" +
+                        feedbacktime+"                </div>" +
+                        "            </div></a>";
                 })
-                $("#multiselect_to_2").append(html);
+                $("#list").html("");
+                $("#list").append(html);
             }
         });
     });

@@ -88,7 +88,6 @@
                               <c:if test="${grantNumberRecord.applytime==null||grantNumberRecord.applytime==''}">
                                 管理员${grantNumberRecord.feedbacktime}给您添加了${grantNumberRecord.grantNumberRecordAmount}个序列数
                               </c:if>
-
                             </div>
                             <div class="notification-time"><small>反馈时间：[${grantNumberRecord.feedbacktime}]</small></div>
                             <c:if test="${grantNumberRecord.grantNumberRecordSee==0}">

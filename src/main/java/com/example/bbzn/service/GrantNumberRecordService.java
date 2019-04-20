@@ -15,6 +15,10 @@ public interface GrantNumberRecordService {
 
     List<GrantNumberRecord> getSeeList(int pageNum,int pageSize,int companyId);
 
+    GrantNumberRecord getGrantNumberRecord(int grantNumberRecordId);
+
+    int updateSee(int grantNumberRecordId);
+
     int saveGrantRecord(GrantNumberRecord grantNumberRecord);
 
     int updateGrantRecord(Date date, int grantNumberRecordId);

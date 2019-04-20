@@ -208,7 +208,7 @@ public class GrantNumberRecordController {
                 pn = "1";
             }
             int pageNum = Integer.valueOf(pn);
-            page.setPageSize(5);
+            page.setPageSize(10);
             page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),-1));
             if(pageNum>page.getTotalPage()){
                 pageNum = page.getTotalPage();
@@ -234,6 +234,31 @@ public class GrantNumberRecordController {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /*
+     * 代理商查看消息详情
+     * */
+    @RequestMapping("/getNewsDetails")
+    public String getNewsDetails(HttpServletRequest request,Model model)  {
+        try {
+            String grantNumberRecordId = (String) request.getParameter("grantNumberRecordId");
+            GrantNumberRecord grantNumberRecord = grantNumberRecordService.getGrantNumberRecord(Integer.valueOf(grantNumberRecordId));
+            if(grantNumberRecord!=null){
+                grantNumberRecordService.updateSee(Integer.valueOf(grantNumberRecordId));
+            }
+            DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制;
+            if(grantNumberRecord.getGrantNumberRecordApplytime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordApplytime())){
+                grantNumberRecord.setApplytime(dFormat.format(grantNumberRecord.getGrantNumberRecordApplytime()));
+            }
+            if(grantNumberRecord.getGrantNumberRecordFeedbacktime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordFeedbacktime())){
+                grantNumberRecord.setFeedbacktime(dFormat.format(grantNumberRecord.getGrantNumberRecordFeedbacktime()));
+            }
+            model.addAttribute("grantNumberRecord",grantNumberRecord);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "grant/Record";
     }
 
 }

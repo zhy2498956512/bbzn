@@ -121,45 +121,47 @@
         <div style="width: 20%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">最近登陆时间</div>
         <div style="width: 20%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">操作</div>
     </div>
-    <div class="row pre-scrollable" style="float: left;width: 97.5%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="viewRecord">
+    <div class="pre-scrollable" style="float: left;width: 97.5%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="viewRecord">
         <c:forEach items="${page.list}" var="equipment" >
-            <input type="hidden" value="${equipment.equipmentId}">
-            <div style="border-bottom: 1px solid #B9BBBE;color: skyblue;cursor: pointer;width: 14%;height: 50px;
-                        border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;" class="grantCode">
-                    ${equipment.grantCode}
-            </div>
-            <div style="width: 13%;height: 50px;float: left;border-bottom: 1px solid #B9BBBE;text-align: center;line-height: 50px;">
-                <c:if test="${equipment.systemEdition==null||equipment.systemEdition==''}">
-                    暂无信息
-                </c:if>
-                <c:if test="${equipment.systemEdition!=null&&equipment.systemEdition!=''}">
-                    ${equipment.systemEdition}
-                </c:if>
-            </div>
-            <div style="width: 13%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
-                <c:if test="${equipment.apkEdition==null||equipment.apkEdition==''}">
-                    暂无信息
-                </c:if>
-                <c:if test="${equipment.apkEdition!=null&&equipment.apkEdition!=''}">
-                    ${equipment.apkEdition}
-                </c:if>
-            </div>
-            <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
-                <fmt:formatDate value="${equipment.equipmentFoundtime}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
-            </div>
-            <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
-                <c:if test="${equipment.equipmentLogintime==null||equipment.equipmentLogintime==''}">
-                    暂无信息
-                </c:if>
-                <c:if test="${equipment.equipmentLogintime!=null&&equipment.equipmentLogintime!=''}">
-                    <fmt:formatDate value="${equipment.equipmentLogintime}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
-                </c:if>
-            </div>
-            <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
-                <input type="button" value="配置语言" style="" class="configure btn btn-primary" data-toggle="modal" data-target="#myModal">
-                <input type="hidden" value="${equipment.projectId}" class="projectId1">
+            <div style="width: 100%;height: 50px;">
                 <input type="hidden" value="${equipment.equipmentId}">
-                <input type="button" value="推送APK" class="btn btn-primary uploadAPK"  data-toggle="modal" data-target="#myModal1">
+                <div style="border-bottom: 1px solid #B9BBBE;color: skyblue;cursor: pointer;width: 14%;height: 50px;
+                        border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;" class="grantCode">
+                        ${equipment.grantCode}
+                </div>
+                <div style="width: 13%;height: 50px;float: left;border-bottom: 1px solid #B9BBBE;text-align: center;line-height: 50px;">
+                    <c:if test="${equipment.systemEdition==null||equipment.systemEdition==''}">
+                        暂无信息
+                    </c:if>
+                    <c:if test="${equipment.systemEdition!=null&&equipment.systemEdition!=''}">
+                        ${equipment.systemEdition}
+                    </c:if>
+                </div>
+                <div style="width: 13%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                    <c:if test="${equipment.apkEdition==null||equipment.apkEdition==''}">
+                        暂无信息
+                    </c:if>
+                    <c:if test="${equipment.apkEdition!=null&&equipment.apkEdition!=''}">
+                        ${equipment.apkEdition}
+                    </c:if>
+                </div>
+                <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                    <fmt:formatDate value="${equipment.equipmentFoundtime}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
+                </div>
+                <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                    <c:if test="${equipment.equipmentLogintime==null||equipment.equipmentLogintime==''}">
+                        暂无信息
+                    </c:if>
+                    <c:if test="${equipment.equipmentLogintime!=null&&equipment.equipmentLogintime!=''}">
+                        <fmt:formatDate value="${equipment.equipmentLogintime}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
+                    </c:if>
+                </div>
+                <div style="width: 20%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                    <input type="button" value="配置语言" style="" class="configure btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <input type="hidden" value="${equipment.projectId}" class="projectId1">
+                    <input type="hidden" value="${equipment.equipmentId}">
+                    <input type="button" value="推送APK" class="btn btn-primary uploadAPK"  data-toggle="modal" data-target="#myModal1">
+                </div>
             </div>
         </c:forEach>
     </div>

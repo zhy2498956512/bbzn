@@ -13,7 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class TextSession extends WebMvcConfigurerAdapter {
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor()).excludePathPatterns("/api/user/*","/api/login/*");
+        /*registry.addInterceptor(interceptor()).excludePathPatterns("/api/user/*","/api/login/*");*/
+        registry.addInterceptor(interceptor()).excludePathPatterns("/api/user/*","/api/login/","/api/login/loginVerification");
     }
 
     @Bean

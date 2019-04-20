@@ -6,7 +6,6 @@ import com.example.bbzn.pushAPI.push.PushClient;
 import com.example.bbzn.service.*;
 import com.example.bbzn.util.DataGeneratorUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

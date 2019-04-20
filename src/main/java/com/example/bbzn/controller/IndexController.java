@@ -74,22 +74,26 @@ public class IndexController {
         try {
             Page page = new Page();
             Company company = (Company)request.getSession().getAttribute("Company");
-            if(company.getCompanyUserType()==0){
-                page.setPageSize(1);
-                page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),0));
-                List<GrantNumberRecord> list = grantNumberRecordService.getSeeList(1, 4, company.getCompanyId());
-                DateFormat dFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss"); //HH表示24小时制;
-                for(GrantNumberRecord grantNumberRecord:list){
-                    if(grantNumberRecord.getGrantNumberRecordApplytime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordApplytime())){
-                        grantNumberRecord.setApplytime(dFormat.format(grantNumberRecord.getGrantNumberRecordApplytime()));
+            if(company!=null){
+                if(company.getCompanyUserType()==0){
+                    page.setPageSize(1);
+                    page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),0));
+                    List<GrantNumberRecord> list = grantNumberRecordService.getSeeList(1, 4, company.getCompanyId());
+                    DateFormat dFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss"); //HH表示24小时制;
+                    for(GrantNumberRecord grantNumberRecord:list){
+                        if(grantNumberRecord.getGrantNumberRecordApplytime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordApplytime())){
+                            grantNumberRecord.setApplytime(dFormat.format(grantNumberRecord.getGrantNumberRecordApplytime()));
+                        }
+                        if(grantNumberRecord.getGrantNumberRecordFeedbacktime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordFeedbacktime())){
+                            grantNumberRecord.setFeedbacktime(dFormat.format(grantNumberRecord.getGrantNumberRecordFeedbacktime()));
+                        }
                     }
-                    if(grantNumberRecord.getGrantNumberRecordFeedbacktime()!=null&&!"".equals(grantNumberRecord.getGrantNumberRecordFeedbacktime())){
-                        grantNumberRecord.setFeedbacktime(dFormat.format(grantNumberRecord.getGrantNumberRecordFeedbacktime()));
-                    }
+                    page.setList(list);
                 }
-                page.setList(list);
+                model.addAttribute("page", page);
+            }else{
+                return "redirect:/api/login/getCompanyindex";
             }
-            model.addAttribute("page", page);
         }catch (Exception e){
             e.printStackTrace();
         }
