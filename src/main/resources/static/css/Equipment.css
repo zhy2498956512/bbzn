@@ -1,0 +1,9 @@
+.biaodan{
+    width: 15%;height: 40px;
+    border-left:1px solid #c8cbcf;
+    float: left;
+    text-align: center ;
+    line-height: 40px;
+    font-size: 13px;
+    font-weight: bold;
+}
