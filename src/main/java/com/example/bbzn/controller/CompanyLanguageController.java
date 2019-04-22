@@ -39,7 +39,7 @@ public class CompanyLanguageController {
         try {
             response.setHeader("Content-type", "text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
-            String company_id = (String) request.getParameter("company_id");
+            String company_id = (String)request.getParameter("company_id");
             List<Language> languageList = languageService.getLanguageList();
             List<CompanyLanguage> companyLanguageList = companyLanguageService.getLanguageList(Integer.valueOf(company_id));
             List<Language> listint = new ArrayList<Language>();
