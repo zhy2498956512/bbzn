@@ -204,12 +204,18 @@ public class GrantNumberRecordController {
             Page page = new Page();
             Company company = (Company)request.getSession().getAttribute("Company");
             String pn = (String) request.getParameter("pageNum");
+            String pz = (String) request.getParameter("pageSize");
             if(pn==null||pn==""){
                 pn = "1";
             }
             int pageNum = Integer.valueOf(pn);
-            page.setPageSize(10);
-            page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),-1));
+            if(pz==null||"".equals(pz)){
+                page.setPageSize(10);
+                page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),-1));
+            }else{
+                page.setPageSize(Integer.valueOf(pz));
+                page.setTotalRecord(grantNumberRecordService.getSeeCount(company.getCompanyId(),0));
+            }
             if(pageNum>page.getTotalPage()){
                 pageNum = page.getTotalPage();
             }

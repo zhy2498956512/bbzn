@@ -79,7 +79,7 @@
                     </c:if>
                     <c:if test="${page.list != null}">
                       <c:forEach items="${page.list}" var="grantNumberRecord">
-                        <li><a rel="nofollow" href="#" class="dropdown-item">
+                        <li><a rel="nofollow" href="api/grantNumberRecord/getNewsDetails?grantNumberRecordId=${grantNumberRecord.grantNumberRecordId}" class="dropdown-item">
                           <div class="notification">
                             <div class="notification-content"><i class="fa fa-envelope bg-green"></i>
                               <c:if test="${grantNumberRecord.applytime!=null&&grantNumberRecord.applytime!=''}">
@@ -96,7 +96,7 @@
                           </div></a></li>
                       </c:forEach>
                     </c:if>
-                    <li><a rel="nofollow" href="api/grantNumberRecord/jumpNewsList" class="dropdown-item all-notifications text-center"> <strong>查看更多信息</strong></a></li>
+                    <li id="more"><a rel="nofollow" href="api/grantNumberRecord/jumpNewsList" class="dropdown-item all-notifications text-center"> <strong>查看更多信息</strong></a></li>
                   </ul>
                 </li>
                 </c:if>
@@ -186,8 +186,65 @@
     <script src="js/charts-home.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
-    <script src="js/jquerysession.js"></script>
     <script type="text/javascript">
+      function Background(id) {
+        $.ajax({
+          url: "api/grantNumberRecord/getNewsList",
+          data: {"pageNum":"1","pageSize":"4"},
+          type: "POST",
+          dataType: "json",
+          success: function (msg) {
+            var data = msg.list;
+            var totalRecord = msg.totalRecord;
+            if(totalRecord>0){
+              $(".badge-corner").html(totalRecord);
+            }else{
+              $(".badge-corner").hide();
+            }
+            var num = 1;
+            var html = "";
+            if(data.length>0){
+              $.each(data, function (num) {
+                var grantNumberRecordId = data[num].grantNumberRecordId;
+                var grantNumberRecordAmount = data[num].grantNumberRecordAmount;
+                var applytime = data[num].applytime;
+                var feedbacktime = data[num].feedbacktime;
+                var grantNumberRecordSee = data[num].grantNumberRecordSee;
+                html = html + "<li><a rel='nofollow' href='api/grantNumberRecord/getNewsDetails?grantNumberRecordId="+grantNumberRecordId+"' class='dropdown-item'>" +
+                        "                          <div class='notification'>" +
+                        "                            <div class='notification-content'><i class='fa fa-envelope bg-green'></i>";
+                if(applytime!=null&&applytime!=""){
+                  html = html + "您"+applytime+"申请的"+grantNumberRecordAmount+"个序列数已过审";
+                }
+                if(applytime==null||applytime==""){
+                  html = html + "管理员"+feedbacktime+"给您添加了"+grantNumberRecordAmount+"个序列数";
+                }
+                html = html + "                            </div>" +
+                        "                            <div class='notification-time'><small>反馈时间：["+feedbacktime+"]</small></div>";
+                if(grantNumberRecordSee==0){
+                  html = html + "<span style='color: red;position:absolute;right:6px;margin-top: -25px;'>*</span>";
+                }
+              })
+              html = html + "<li id='more'><a rel='nofollow' href='api/grantNumberRecord/jumpNewsList' class='dropdown-item all-notifications text-center'><strong>查看更多信息</strong></a></li>";
+              /*html = html + "<li><a rel='nofollow' href='api/grantNumberRecord/getNewsDetails?grantNumberRecordId=11' class='dropdown-item'>" +
+                      "                          <div class='notification'>" +
+                      "                            <div class='notification-content'><i class='fa fa-envelope bg-green'></i>"+
+              "                            </div>" +
+                      "                            <div class='notification-time'><small>反馈时间：[6666666666666]</small></div>";*/
+              /*"<span style='color: red;position:absolute;right:6px;margin-top: -25px;'>*</span></div></a></li>";*/
+            }else{
+              html = html + "<li><span rel='nofollow' class='dropdown-item'>" +
+                      "                        <div class='notification'>" +
+                      "                          <div class='notification-content'>暂无数据</div>" +
+                      "                        </div></span></li>";
+              $("#more").hide();
+            }
+            $(".dropdown-menu").html("");
+            $(".dropdown-menu").append(html);
+          }
+        });
+      }
+
       $(function () {
         $("#quit").click(function () {
           location.href="api/login/quit"

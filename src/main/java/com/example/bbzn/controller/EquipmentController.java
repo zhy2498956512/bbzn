@@ -413,7 +413,7 @@ public class EquipmentController {
                     String updateName= str1+DataGeneratorUtil.timeString()+hz;
                     File filePath = new File(req.getSession().getServletContext().getRealPath("/") + "../apk/", updateName);
                     apk.setApkRoute(apk_url + updateName);
-                    //file.transferTo(filePath);       //上传文件
+                    file.transferTo(filePath);       //上传文件
                 }
             }
             apkService.saveAPK(apk);

@@ -4,10 +4,12 @@ public class Language {
 
     private int languageId;            //语言id
     private String languageName;            //语言id
-    private String languageSpeakTextCode;
-    private String languageTranslateCode;
-    private String languageTextSpeakCode;
+    private String asrCode;
+    private String translateCode;
+    private String ttsCode;
     private String countryFlag;             //国旗
+    private String player;             //国旗
+    private int gender;             //国旗
 
 
     public int getLanguageId() {
@@ -26,28 +28,28 @@ public class Language {
         this.languageName = languageName;
     }
 
-    public String getLanguageSpeakTextCode() {
-        return languageSpeakTextCode;
+    public String getAsrCode() {
+        return asrCode;
     }
 
-    public void setLanguageSpeakTextCode(String languageSpeakTextCode) {
-        this.languageSpeakTextCode = languageSpeakTextCode;
+    public void setAsrCode(String asrCode) {
+        this.asrCode = asrCode;
     }
 
-    public String getLanguageTranslateCode() {
-        return languageTranslateCode;
+    public String getTranslateCode() {
+        return translateCode;
     }
 
-    public void setLanguageTranslateCode(String languageTranslateCode) {
-        this.languageTranslateCode = languageTranslateCode;
+    public void setTranslateCode(String translateCode) {
+        this.translateCode = translateCode;
     }
 
-    public String getLanguageTextSpeakCode() {
-        return languageTextSpeakCode;
+    public String getTtsCode() {
+        return ttsCode;
     }
 
-    public void setLanguageTextSpeakCode(String languageTextSpeakCode) {
-        this.languageTextSpeakCode = languageTextSpeakCode;
+    public void setTtsCode(String ttsCode) {
+        this.ttsCode = ttsCode;
     }
 
     public String getCountryFlag() {
@@ -58,12 +60,33 @@ public class Language {
         this.countryFlag = countryFlag;
     }
 
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "Language{" +
                 "languageId=" + languageId +
                 ", languageName='" + languageName + '\'' +
+                ", asrCode='" + asrCode + '\'' +
+                ", translateCode='" + translateCode + '\'' +
+                ", ttsCode='" + ttsCode + '\'' +
+                ", countryFlag='" + countryFlag + '\'' +
+                ", player='" + player + '\'' +
+                ", gender=" + gender +
                 '}';
     }
-
 }

@@ -379,6 +379,10 @@ public class UserAPIController {
                 System.out.println("userId:"+userId);
                 List<Translate> translateList = translateService.getTranslateList(Integer.valueOf(userId));
                 if(translateList.size()>0){
+                    for (Translate t:translateList){
+                        System.out.println("Translate:"+t);
+                    }
+
                     return commonResponse.commonReturn(JSONObject.toJSONString(translateList));
                 }else {
                     return commonResponse.commonReturn(JSONObject.toJSONString("未获取到数据"));

@@ -15,8 +15,8 @@ public interface TranslateDao {
     @Select("select * from b_translate where user_id = #{userId}")
     List<Translate> getTranslateList(int userId);
 
-    @Insert("insert into b_translate(user_id,translate_date,translate_content,translate_result,language_speak_text_code,language_mother_tongue_code) " +
-            "value(#{t.userId},#{t.translateDate},#{t.translateContent},#{t.translateResult},#{t.languageSpeakTextCode},#{t.languageMotherTongueCode})")
+    @Insert("insert into b_translate(user_id,translate_date,translate_content,translate_result,foreign_play_code,mother_play_code,player,is_left,gender) " +
+            "value(#{t.userId},#{t.translateDate},#{t.translateContent},#{t.translateResult},#{t.foreignPlayCode},#{t.motherPlayCode},#{t.player},#{t.isLeft},#{t.gender})")
     int saveTranslate(@Param("t") Translate translate);
 
     @Delete("delete from b_translate where translate_id = #{translateId}")

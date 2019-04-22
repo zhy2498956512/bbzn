@@ -84,14 +84,14 @@
 
 <div style="width: 100%;height: 50px;float: left;background-color: #fff;">
     <div class="xmxq_1">
-        <a href="/api/grantNumberRecord/jumpNewsList"><span>返回消息列表</span></a>
+        <a href="api/grantNumberRecord/jumpNewsList"><span>返回消息列表</span></a>
     </div>
 </div>
 <div style="width: 100%;height: 600px;float: left;border-top: #00F7DE 2px solid;background-color: #fff;">
     <div style="width: 96%;height: 170px;border-radius:8px ;border: 1px solid #cf5642;margin: 0 auto;margin-top: 30px;margin-left: 2%;">
         <div style="width:94% ;margin-left: 3%;height: 60px;border-bottom: 1px solid #818181;">
-            <span style="margin-left: 50%;font-size: 24px;">序列码数量变更提醒</span><br>
-            <span style="margin-left: 50%;font-size: 18px;">${grantNumberRecord.feedbacktime}</span>
+            <span style="margin-left: 40%;font-size: 24px;">序列码数量变更提醒</span><br>
+            <span style="margin-left: 41.5%;font-size: 18px;">${grantNumberRecord.feedbacktime}</span>
         </div>
         <div style="font-size: 18px;">
             尊敬的${sessionScope.Company.companyName}
@@ -114,5 +114,10 @@
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 <!-- Main File-->
 <script src="js/front.js"></script>
+<script type="text/javascript">
+$(function () {
+    window.parent.Background(${grantNumberRecord.grantNumberRecordId});
+});
+</script>
 </body>
 </html>

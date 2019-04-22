@@ -13,8 +13,11 @@ public class Translate {
     private Date translateDate;             //翻译时间
     private String translateContent;        //翻译内容
     private String translateResult;         //翻译结果
-    private String languageSpeakTextCode;   //nuance语言代码
-    private String languageMotherTongueCode;   //母语语言代码
+    private String foreignPlayCode;   //nuance语言代码
+    private String motherPlayCode;   //母语语言代码
+    private String player;
+    private int isLeft;//是否母语 1.母语，2.外语
+    private int gender;//性别 1.男的，2.女的
 
     public int getTranslateId() {
         return translateId;
@@ -30,6 +33,14 @@ public class Translate {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Date getTranslateDate() {
+        return translateDate;
+    }
+
+    public void setTranslateDate(Date translateDate) {
+        this.translateDate = translateDate;
     }
 
     public String getTranslateContent() {
@@ -48,28 +59,44 @@ public class Translate {
         this.translateResult = translateResult;
     }
 
-    public Date getTranslateDate() {
-        return translateDate;
+    public String getForeignPlayCode() {
+        return foreignPlayCode;
     }
 
-    public void setTranslateDate(Date translateDate) {
-        this.translateDate = translateDate;
+    public void setForeignPlayCode(String foreignPlayCode) {
+        this.foreignPlayCode = foreignPlayCode;
     }
 
-    public String getLanguageSpeakTextCode() {
-        return languageSpeakTextCode;
+    public String getMotherPlayCode() {
+        return motherPlayCode;
     }
 
-    public void setLanguageSpeakTextCode(String languageSpeakTextCode) {
-        this.languageSpeakTextCode = languageSpeakTextCode;
+    public void setMotherPlayCode(String motherPlayCode) {
+        this.motherPlayCode = motherPlayCode;
     }
 
-    public String getLanguageMotherTongueCode() {
-        return languageMotherTongueCode;
+    public String getPlayer() {
+        return player;
     }
 
-    public void setLanguageMotherTongueCode(String languageMotherTongueCode) {
-        this.languageMotherTongueCode = languageMotherTongueCode;
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
+    public int getIsLeft() {
+        return isLeft;
+    }
+
+    public void setIsLeft(int isLeft) {
+        this.isLeft = isLeft;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     @Override
@@ -77,8 +104,14 @@ public class Translate {
         return "Translate{" +
                 "translateId=" + translateId +
                 ", userId=" + userId +
+                ", translateDate=" + translateDate +
                 ", translateContent='" + translateContent + '\'' +
                 ", translateResult='" + translateResult + '\'' +
+                ", foreignPlayCode='" + foreignPlayCode + '\'' +
+                ", motherPlayCode='" + motherPlayCode + '\'' +
+                ", player='" + player + '\'' +
+                ", isLeft=" + isLeft +
+                ", gender=" + gender +
                 '}';
     }
 }
