@@ -6,9 +6,9 @@ import java.util.Date;
 
 public interface UserService {
 
-    User getUser(String phone,String pass);
+    User getUser(String mail,String pass);
 
-    int getPhone(String phone);
+    int getMail(String mail);
 
     int getGrant(int grantId);
 
@@ -24,7 +24,7 @@ public interface UserService {
 
     int updateUserInformation(User user);
 
-    int updateUserPass(String userPhone,String userPass);
+    int updateUserPass(String userMail,String userPass);
 
     int updateUserGrant(int grantId);
 

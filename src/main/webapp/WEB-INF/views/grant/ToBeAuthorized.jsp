@@ -38,7 +38,7 @@
     <script type="text/javascript">
         $(function () {
             $.ajax({
-                url: "api/grantNumberRecord/record",
+                url: "/api/grantNumberRecord/record",
                 data: {"recordType":2},
                 type: "POST",
                 dataType: "json",
@@ -73,7 +73,7 @@
                         if (confirm("确定要授权吗？")) {
                             var grantNumberRecordId = t.prev().val();
                             $.ajax({
-                                url: "api/grantNumberRecord/getPurchaseFeedback",
+                                url: "/api/grantNumberRecord/getPurchaseFeedback",
                                 data: {"grantNumberRecordId": grantNumberRecordId},
                                 type: "POST",
                                 dataType: "json",

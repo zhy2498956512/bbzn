@@ -91,7 +91,7 @@ $(function () {
     $("#savaProject").click(function () {
         $("#projectType").html("");
         $.ajax({
-            url: "api/project/getProjectType",
+            url: "/api/project/getProjectType",
             data: {},
             type: "POST",
             dataType: "json",
@@ -119,7 +119,7 @@ $(function () {
 
     $(".record").click(function () {
         $.ajax({
-            url: "api/grantNumberRecord/record",
+            url: "/api/grantNumberRecord/record",
             data: {"pageNum": $(this).prev().val(),"recordType":1},
             type: "POST",
             dataType: "json",
@@ -181,7 +181,7 @@ $(function () {
 
     $("#generate").click(function () {
         $.ajax({
-            url: "api/grant/getAgentProject",
+            url: "/api/grant/getAgentProject",
             data: {},
             type: "POST",
             dataType: "json",
@@ -224,7 +224,7 @@ $(function () {
         var binary = $("#binary").val();        //授权码进制
         var projectId = $("#project").val();        //授权码进制
         $.ajax({
-            url: "api/grant/getCode",
+            url: "/api/grant/getCode",
             data: {"prefix":prefix,"length":length,"number":number,"binary":binary},
             type: "POST",
             dataType: "json",
@@ -270,13 +270,13 @@ $(function () {
                 var binary = $("#submitCode").prev().prev().prev().val();
                 var projectId = $("#submitCode").prev().prev().prev().prev().val();
                 $.ajax({
-                    url: "api/grant/uploadCode",
+                    url: "/api/grant/uploadCode",
                     data: {"prefix":prefix,"length":length,"binary":binary,"projectId":projectId,"codeList":$('#multiselect_to_1').val()+""},
                     type: "POST",
                     dataType: "json",
                     success: function (msg) {
                         alert("序列号上传成功");
-                        location.href="api/grantNumberRecord/jump";
+                        location.href="/api/grantNumberRecord/jump";
                     }
                 });
             }
@@ -290,12 +290,12 @@ $(function () {
     });
 
     $(".jump3").click(function () {
-        location.href="api/equipment/jumpEquipment?projectId="+$(this).prev().val()+"&equipmentType=1&searchEquipment=";
+        location.href="/api/equipment/jumpEquipment?projectId="+$(this).prev().val()+"&equipmentType=1&searchEquipment=";
     });
 
     $(".updateProjectName").click(function () {
         $.ajax({
-            url: "api/project/updateProjectName",
+            url: "/api/project/updateProjectName",
             data: {"projectId":$(this).prev().val()},
             type: "POST",
             dataType: "json",
@@ -325,7 +325,7 @@ $(function () {
 
     $("#uploadFiles").click(function () {
         $.ajax({
-            url: "api/grant/getAgentProject",
+            url: "/api/grant/getAgentProject",
             data: {},
             type: "POST",
             dataType: "json",
@@ -352,7 +352,7 @@ $(function () {
         $("#multiselect_to_4").html("");
         $("#multiselect_to_5").html("");
         $.ajax({
-            url: "api/grant/uploadCodeFile",
+            url: "/api/grant/uploadCodeFile",
             type: 'POST',
             /*async: false,*/
             data: formData,
@@ -404,14 +404,14 @@ $(function () {
         if (confirm("确定要生成授权码吗？")) {
             var info = $("[name='info']").val();
             $.ajax({
-                url: "api/grant/uploadFileCode",
+                url: "/api/grant/uploadFileCode",
                 data: {"codeList":$('#multiselect_to_4').val()+"","info":info},
                 type: "POST",
                 dataType: "json",
                 success: function (msg) {
                     if(msg==1){
                         alert("序列号上传成功");
-                        location.href="api/grantNumberRecord/jump";
+                        location.href="/api/grantNumberRecord/jump";
                     }else {
                         alert("序列号上传失败!!!");
                     }
@@ -424,7 +424,7 @@ $(function () {
         var projectId = $(this).next().val();
         $("#cId").val(projectId);
         $.ajax({
-            url: "api/projectLanguage/getProjectLanguage",
+            url: "/api/projectLanguage/getProjectLanguage",
             data: {"projectId":""+projectId},
             type: "POST",
             dataType: "json",
@@ -562,7 +562,7 @@ $(function () {
     
     $(".projectConfigure").click(function () {
         var projectId = $(this).prev().prev().val();
-        location.href = "api/project/projectConfigure?projectId="+projectId;
+        location.href = "/api/project/projectConfigure?projectId="+projectId;
     });
 
 });

@@ -73,7 +73,7 @@
                 var multiselect_to_1 = $(this).val();
                 $("#multiselect_to_2").html("");
                 $.ajax({
-                    url: "api/equipment/getProjectList",
+                    url: "/api/equipment/getProjectList",
                     data: {"multiselect_to_1":""+multiselect_to_1},
                     type: "POST",
                     dataType: "json",
@@ -96,7 +96,7 @@
                 var multiselect_to_3 = $("#multiselect_to_3").val();
                 var multiselect_to_4 = $("#multiselect_to_4").val();
                 $.ajax({
-                    url: "api/equipment/getEquipment",
+                    url: "/api/equipment/getEquipment",
                     data: {"multiselect_to_2":multiselect_to_2+"","multiselect_to_3":multiselect_to_3,"multiselect_to_4":multiselect_to_4},
                     type: "POST",
                     dataType: "json",
@@ -187,7 +187,7 @@
                             var equipmentId = equipment.prev().val();
                             if (confirm("确定要删除该设备吗？")) {
                                 $.ajax({
-                                    url: "api/equipment/deleteEquipment",
+                                    url: "/api/equipment/deleteEquipment",
                                     data: {"equipmentId":equipmentId+""},
                                     type: "POST",
                                     dataType: "json",
@@ -212,7 +212,7 @@
                 var multiselect_to_4 = $("#multiselect_to_4").val();
                 var pageNum = $(this).prev().val();
                 $.ajax({
-                    url: "api/equipment/getEquipment",
+                    url: "/api/equipment/getEquipment",
                     data: {"multiselect_to_2":multiselect_to_2+"","multiselect_to_3":multiselect_to_3,"multiselect_to_4":multiselect_to_4,"pageNum":pageNum},
                     type: "POST",
                     dataType: "json",
@@ -292,7 +292,7 @@
                             var equipmentId = equipment.prev().val();
                             if (confirm("确定要删除该设备吗？")) {
                                 $.ajax({
-                                    url: "api/equipment/deleteEquipment",
+                                    url: "/api/equipment/deleteEquipment",
                                     data: {"equipmentId":equipmentId+""},
                                     type: "POST",
                                     dataType: "json",

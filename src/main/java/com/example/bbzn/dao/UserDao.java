@@ -12,14 +12,14 @@ import java.util.Date;
 @Repository
 public interface UserDao {
 
-    @Select("select * from b_user where user_phone=#{phone} and user_pass=#{pass}")
-    User getUser(@Param("phone") String phone,@Param("pass") String pass);
+    @Select("select * from b_user where user_mail=#{mail} and user_pass=#{pass}")
+    User getUser(@Param("mail") String mail,@Param("pass") String pass);
 
     @Select("select * from b_user where user_id=#{user_id}")
     User getUserId(int user_id);
 
-    @Select("select count(1) from b_user where user_phone=#{phone}")
-    int getPhone(String phone);
+    @Select("select count(1) from b_user where user_mail=#{mail}")
+    int getMail(String mail);
 
     @Select("select count(1) from b_user where grant_id=#{grantId}")
     int getGrant(int grantId);
@@ -47,10 +47,10 @@ public interface UserDao {
     @Update("update b_user set user_location=#{userLocation} where user_id=#{userId}")
     int updateUserlocation(@Param("userId") int userId,@Param("userLocation") String userLocation);
 
-    @Update("update b_user set user_pass=#{userPass} where user_phone=#{userPhone}")
-    int updateUserPass(@Param("userPhone") String userPhone,@Param("userPass") String userPass);
+    @Update("update b_user set user_pass=#{userPass} where user_mail=#{userMail}")
+    int updateUserPass(@Param("userMail") String userMail,@Param("userPass") String userPass);
 
-    @Insert("insert into b_user(user_phone,user_pass,country_code) value(#{user.userPhone},#{user.userPass},#{user.countryCode})")
+    @Insert("insert into b_user(user_mail,user_pass) value(#{user.userMail},#{user.userPass})")
     int saveUser(@Param("user") User user);
 
 }

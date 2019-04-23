@@ -1,11 +1,11 @@
 $(function () {
     $("#regression").click(function () {
-        location.href="api/equipment/jumpEquipment?projectId="+$("#projectId").val()+"&equipmentType=1&searchEquipment=";
+        location.href="/api/equipment/jumpEquipment?projectId="+$("#projectId").val()+"&equipmentType=1&searchEquipment=";
     });
 
     $("#editionSwitchProject").click(function () {
         $.ajax({
-            url: "api/project/showProjectList",
+            url: "/api/project/showProjectList",
             data: {"projectId":$("#projectId").val()},
             type: "POST",
             dataType: "json",
@@ -28,14 +28,14 @@ $(function () {
             alert("无修改");
         }else {
             $.ajax({
-                url: "api/equipment/equipmentSwitchProject",
+                url: "/api/equipment/equipmentSwitchProject",
                 data: {"projectId":$("#projectId").val(),"switchProjectId":$("#projectList").val(),"equipmentId":$("#equipmentId").val()},
                 type: "POST",
                 dataType: "json",
                 success: function (msg) {
                     if(msg==200){
                         alert("修改成功");
-                        location.href="api/equipment/jumpEquipment?projectId="+$("#projectId").val()+"&equipmentType=1&searchEquipment=";
+                        location.href="/api/equipment/jumpEquipment?projectId="+$("#projectId").val()+"&equipmentType=1&searchEquipment=";
                     }else{
                         alert("修改失败");
                     }
@@ -47,7 +47,7 @@ $(function () {
 
     $(".record").click(function () {
         $.ajax({
-            url: "api/pushRecord/showPushRecord",
+            url: "/api/pushRecord/showPushRecord",
             data: {"pageNum": $(this).prev().val(),"equipmentId":$("#equipmentId").val()},
             type: "POST",
             dataType: "json",

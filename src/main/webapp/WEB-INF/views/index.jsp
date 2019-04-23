@@ -247,7 +247,7 @@
 
       $(function () {
         $("#quit").click(function () {
-          location.href="api/login/quit"
+          location.href="/api/login/quit"
         });
         /*
         $(".judge").click(function () {

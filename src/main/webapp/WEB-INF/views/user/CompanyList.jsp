@@ -264,7 +264,7 @@
             var updateInformation = $(this);
             var companyId = updateInformation.prev().prev().prev().val();
             $.ajax({
-                url: "api/company/adminUpdateInformationShow",
+                url: "/api/company/adminUpdateInformationShow",
                 data: {"companyId": "" + companyId},
                 type: "POST",
                 dataType: "json",
@@ -296,7 +296,7 @@
                 var company_id = $(this).prev().val();
                 $("#cId").val(company_id);
                 $.ajax({
-                    url: "api/companyLanguage/getCompanyLanguage",
+                    url: "/api/companyLanguage/getCompanyLanguage",
                     data: {"company_id":""+company_id},
                     type: "POST",
                     dataType: "json",
@@ -448,7 +448,7 @@
                 }
                 var company_id = closeCompany.prev().prev().prev().prev().val();
                 $.ajax({
-                    url: "api/company/stateCompany",
+                    url: "/api/company/stateCompany",
                     data: {"companyId":""+company_id,"companyType":companyType},
                     type: "POST",
                     dataType: "json",

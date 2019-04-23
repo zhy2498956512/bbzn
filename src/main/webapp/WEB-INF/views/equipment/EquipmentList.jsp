@@ -324,11 +324,11 @@
             });*/
 
             $("#regression").click(function () {
-                location.href = "api/grantNumberRecord/jump";
+                location.href = "/api/grantNumberRecord/jump";
             });
 
             $(".grantCode").click(function () {
-                location.href = "api/equipment/equipmentConfigure?equipmentId="+$(this).prev().val()+"&projectId="+$(".projectId1").val();
+                location.href = "/api/equipment/equipmentConfigure?equipmentId="+$(this).prev().val()+"&projectId="+$(".projectId1").val();
             });
 
             $(".record").focus(function(){
@@ -344,7 +344,7 @@
                 var searchEquipment = $("#searchEquipment").val();
                 var record = $(this);
                 $.ajax({
-                    url: "api/equipment/jumpEquipmentJson",
+                    url: "/api/equipment/jumpEquipmentJson",
                     data: {"pageNum": record.prev().val(),"projectId":projectId,"equipmentType":equipmentType,"searchEquipment":searchEquipment},
                     type: "POST",
                     dataType: "json",
@@ -420,7 +420,7 @@
                 var equipmentType = $("#equipmentType").val();
                 var searchEquipment = $("#searchEquipment").val();
                 $.ajax({
-                    url: "api/equipment/jumpEquipmentJson",
+                    url: "/api/equipment/jumpEquipmentJson",
                     data: {"pageNum": 1+"","projectId":projectId,"equipmentType":equipmentType,"searchEquipment":searchEquipment},
                     type: "POST",
                     dataType: "json",
@@ -487,7 +487,7 @@
                     $("#cId").val(equipmentId);
                     $("#projectId").val(projectId);
                     $.ajax({
-                        url: "api/equipmentLanguage/getEquipmentLanguage",
+                        url: "/api/equipmentLanguage/getEquipmentLanguage",
                         data: {"projectId":""+projectId,"equipmentId":""+equipmentId},
                         type: "POST",
                         dataType: "json",
@@ -531,7 +531,7 @@
                     var projectId = $(".projectId1").val();
                     var grantCode = $("#grantCode").val();
                     $.ajax({
-                        url: "api/equipment/saveEquipment",
+                        url: "/api/equipment/saveEquipment",
                         data: {"projectId":""+projectId,"grantCode":""+grantCode},
                         type: "POST",
                         dataType: "json",
@@ -546,7 +546,7 @@
                                 alert("授权码已使用！！！");
                             }else if (msg==1) {
                                 alert("新增成功");
-                                location.href="api/equipment/jumpEquipment?projectId="+projectId+"&equipmentType=1&searchEquipment=";
+                                location.href="/api/equipment/jumpEquipment?projectId="+projectId+"&equipmentType=1&searchEquipment=";
                             }
                         }
                     });
@@ -564,7 +564,7 @@
                 $("#cId").val(equipmentId);
                 $("#projectId").val(projectId);
                 $.ajax({
-                    url: "api/equipmentLanguage/getEquipmentLanguage",
+                    url: "/api/equipmentLanguage/getEquipmentLanguage",
                     data: {"projectId":""+projectId,"equipmentId":""+equipmentId},
                     type: "POST",
                     dataType: "json",

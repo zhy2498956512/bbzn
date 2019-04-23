@@ -1,20 +1,20 @@
 $(function () {
     $("#regression").click(function () {
-        location.href = "api/grantNumberRecord/jump";
+        location.href = "/api/grantNumberRecord/jump";
     });
 
     $("#updateProjectName").click(function () {
         if($("#projectName").val()==""){
             alert("项目名不能为空")
         }else {
-            location.href = "api/project/updateProjectName?projectId="+$("#projectId").val()+"&projectName="+$("#projectName").val();
+            location.href = "/api/project/updateProjectName?projectId="+$("#projectId").val()+"&projectName="+$("#projectName").val();
         }
     });
 
 
     $(".record").click(function () {
         $.ajax({
-            url: "api/pushRecord/showPushRecord",
+            url: "/api/pushRecord/showPushRecord",
             data: {"pageNum": $(this).prev().val(),"projectId":$("#projectId").val()},
             type: "POST",
             dataType: "json",
@@ -57,7 +57,7 @@ $(function () {
 
     $(".record1").click(function () {
         $.ajax({
-            url: "api/pushRecord/showProjectPush",
+            url: "/api/pushRecord/showProjectPush",
             data: {"pageNum": $(this).prev().val(),"projectId":$("#projectId").val()},
             type: "POST",
             dataType: "json",
@@ -112,7 +112,7 @@ $(function () {
         }
         var formData = new FormData($("#uploadForm")[0]);
         $.ajax({
-            url: "api/pushRecord/pushRecord",
+            url: "/api/pushRecord/pushRecord",
             type: 'POST',
             /*async: false,*/
             data: formData,
@@ -121,7 +121,7 @@ $(function () {
             success: function (data) {
                 if(data=="推送成功"){
                     alert("推送成功");
-                    location.href = "api/project/projectConfigure?projectId="+$("#projectId").val();
+                    location.href = "/api/project/projectConfigure?projectId="+$("#projectId").val();
                 }else {
                     alert(data);
                 }
@@ -149,7 +149,7 @@ $(function () {
         }
         var formData = new FormData($("#uploadForm1")[0]);
         $.ajax({
-            url: "api/equipmentLanguage/configurationLanguage",
+            url: "/api/equipmentLanguage/configurationLanguage",
             type: 'POST',
             /*async: false,*/
             data: formData,
@@ -158,7 +158,7 @@ $(function () {
             success: function (data) {
                 if(data=="配置成功"){
                     alert("配置成功");
-                    location.href = "api/project/projectConfigure?projectId="+$("#projectId").val();
+                    location.href = "/api/project/projectConfigure?projectId="+$("#projectId").val();
                 }else {
                     alert(data);
                 }
@@ -172,7 +172,7 @@ $(function () {
 
     $("#configurationLanguage").click(function () {
         $.ajax({
-            url: "api/projectLanguage/getProjectLanguageList",
+            url: "/api/projectLanguage/getProjectLanguageList",
             data: {"projectId":$("#projectId").val()},
             type: "POST",
             dataType: "json",

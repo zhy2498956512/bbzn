@@ -5,6 +5,7 @@ import com.example.bbzn.dao.GrantDao;
 import com.example.bbzn.pojo.*;
 import com.example.bbzn.service.*;
 import com.example.bbzn.util.*;
+import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,10 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -483,37 +486,7 @@ public class UserAPIController {
             return commonResponse.commonErrorReturn(500,"系统异常");
         }
     }
-    /*@RequestMapping(value = "/savePhotograph", method = RequestMethod.POST)
-    @ResponseBody
-    public String savePhotograph(HttpServletRequest request){
-        try {
-            Photograph photograph = new Photograph();
-                    *//*JSONObject.parseObject(json,Photograph.class);*//*
-            photograph.setPhotographDate(new Date());
-            List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
-            MultipartFile file = null;
-            for (int i = 0; i < files.size(); ++i) {
-                file = files.get(i);
-                if (!file.isEmpty()) {
-                    String fileName = file.getOriginalFilename();
-                    String hz=fileName.substring(fileName.indexOf("."));
-                    String updateName= DataGeneratorUtil.generateRandomStr(32)+hz;
-                    File filePath = new File(request.getSession().getServletContext().getRealPath("/") + "../UserPhotographImg/", updateName);
-                    photograph.setPhotographImg(user_photograph_img + updateName);
-                    file.transferTo(filePath);       //上传文件
-                }
-            }
-            int count = photographService.savePhotograph(photograph);
-            if(count>0){
-                return commonResponse.commonReturn(JSONObject.toJSONString("新增成功"));
-            }else {
-                return commonResponse.commonErrorReturn(500,"新增失败");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            return commonResponse.commonErrorReturn(500,"系统异常");
-        }
-    }*/
+
 
     //拍照翻译end
 
@@ -532,7 +505,6 @@ public class UserAPIController {
             return commonResponse.commonErrorReturn(500,"系统异常");
         }
     }
-
 
 
 }

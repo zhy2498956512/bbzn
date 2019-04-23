@@ -14,12 +14,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    public User getUser(String phone, String pass){
-        return userDao.getUser(phone,pass);
+    public User getUser(String mail, String pass){
+        return userDao.getUser(mail,pass);
     }
 
-    public int getPhone(String phone){
-        return userDao.getPhone(phone);
+    public int getMail(String phone){
+        return userDao.getMail(phone);
     }
 
     public User getUserId(int user_id){
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUserInformation(user);
     }
 
-    public int updateUserPass(String userPhone,String userPass){
-        return userDao.updateUserPass(userPhone,userPass);
+    public int updateUserPass(String userMail,String userPass){
+        return userDao.updateUserPass(userMail,userPass);
     }
 
     public int updateUserGrant(int grantId){

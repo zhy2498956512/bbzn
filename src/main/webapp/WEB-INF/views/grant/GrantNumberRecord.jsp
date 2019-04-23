@@ -117,7 +117,7 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
-            url: "api/grantNumberRecord/getNewsList",
+            url: "/api/grantNumberRecord/getNewsList",
             data: {"pageNum":"1"},
             type: "POST",
             dataType: "json",
