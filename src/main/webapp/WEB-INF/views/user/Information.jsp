@@ -53,7 +53,7 @@
         </c:forEach>
     </table>
 </div>
-<div style="width: 40%;height: 300px;background-color: #fff;border-top: 2px solid #00FFFF;float: left;margin: 30px 0 0 20px;">
+<div style="width: 40%;height: 300px;background-color: #fff;border-top: 2px solid #796AEE;float: left;margin: 30px 0 0 20px;">
     <div style="width: 100%;height: 60px;border-bottom: 1px solid #cccccc;">
         <h5 style="text-indent: 20px;line-height: 60px;">代理信息</h5>
     </div>

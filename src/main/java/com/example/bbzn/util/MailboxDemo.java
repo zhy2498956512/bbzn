@@ -1,5 +1,6 @@
 package com.example.bbzn.util;
 
+import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -28,7 +29,7 @@ public class MailboxDemo {
     }
 
     /**
-     * 企业邮箱 发送html邮件
+     * 企业邮箱 发送html邮件（方法1）
      *
      * @param from     发件人
      * @param to       收件人
@@ -43,7 +44,13 @@ public class MailboxDemo {
         //设置服务器验证信息
         Properties prop = new Properties();
         prop.setProperty("mail.smtp.auth", "true");
-        prop.setProperty("mail.smtp.timeout", "30000");
+        prop.setProperty("mail.smtp.port", "465");
+        prop.setProperty("mail.smtp.timeout", "465");
+
+        MailSSLSocketFactory sf = new MailSSLSocketFactory();// SSL加密
+        sf.setTrustAllHosts(true); // 设置信任所有的主机
+        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.ssl.socketFactory", sf);
 
         //设置邮件内容
         JavaMailSenderImpl javaMailSend = new JavaMailSenderImpl();
@@ -63,4 +70,7 @@ public class MailboxDemo {
 
         javaMailSend.send(message);
     }
+
+
+
 }

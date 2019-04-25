@@ -90,6 +90,9 @@ public class GrantController {
     @ResponseBody
     public void getCode(HttpServletRequest request, HttpServletResponse response){
         try {
+            DateFormat dFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss"); //HH表示24小时制;
+            Date date = new Date();
+            int y = 0;
             String prefix = request.getParameter("prefix");       //前缀（最大3个字符或数字）
             int length = Integer.valueOf(request.getParameter("length"));       //授权码长度
             int number = Integer.valueOf(request.getParameter("number"));       //授权码数量
@@ -116,14 +119,19 @@ public class GrantController {
                 if(grantService.getGrantCode(result.toString(),idlist)<1){
                     list.add(result.toString());
                 }else{
+                    ++y;
                     --z;
                 }
             }
+            System.out.println("开始："+dFormat.format(date));
+            System.out.println("不可以："+y);
+            System.out.println("结束："+dFormat.format(new Date()));
             String str1 = null;
             if (list.size() != 0) {
                 ObjectMapper x = new ObjectMapper();//ObjectMapper类提供方法将list数据转为json数据
                 str1 = x.writeValueAsString(list);
             }
+
             response.getWriter().print(str1);
         }catch (Exception e){
             e.printStackTrace();

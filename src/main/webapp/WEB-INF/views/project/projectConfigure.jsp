@@ -45,9 +45,10 @@
             text-indent: 5px;
         }
         .xmxq{
-            width: 95%;
-            margin: 0 auto;
-            border-top: 2px solid skyblue;
+            width: 99%;
+            margin-left: 8px;
+            margin-top: 8px;
+            border-top: 2px solid #796AEE;
             height: 320px;
             background-color: #fff;
             border-radius:5px ;
@@ -93,11 +94,10 @@
             float: left;
             width: 15%;
             height: 220px;
-
+            margin-top: 20px;
         }
         .zt_bt .zt_ul{
             float: right;
-
         }
         .zt_ul li{
             line-height: 40px;
@@ -105,7 +105,7 @@
         }
         .zt_index{
             float: left;
-
+            margin-top: 20px;
         }
         .zt_ul input{
             background-color: lavender;border: 1px solid #ccc;width: 324px;height: 24px;
@@ -136,7 +136,7 @@
 <body style="background-color: #ccc;">
 <div class="xmxq">
     <div class="xmxq_1">
-        <span id="regression">返回项目列表</span>
+        <span id="regression" style="background-color: #796AEE">返回项目列表</span>
         <span>项目的详细信息</span>
     </div>
     <div class="xmxq_zt">

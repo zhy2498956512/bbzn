@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -60,7 +62,8 @@ public class TestController {
     @ResponseBody
     public String verificationTest(){
         try {
-            Date date1 = new Date();
+            DateFormat dFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss"); //HH表示24小时制;
+            Date date = new Date();
             List<String> list = new ArrayList<String>();
             list.add("026570291692507");
             list.add("177999884542976");
@@ -75,9 +78,18 @@ public class TestController {
             List<Integer> idlist = new ArrayList<Integer>();
             idlist.add(30);
             idlist.add(31);
+            int z = 0;
+            int y = 0;
             for(int i=0;i<list.size();i++){
-                grantService.getGrantCode(list.get(i),idlist);
+                ++y;
+                if(grantService.getGrantCode(list.get(i),idlist)>0){
+                    ++z;
+                }
             }
+            System.out.println("开始："+dFormat.format(date));
+            System.out.println("次数："+y);
+            System.out.println("不可以："+z);
+            System.out.println("结束："+dFormat.format(new Date()));
             return commonResponse.commonReturn(JSONObject.toJSONString("成功"));
         }catch (Exception e){
             e.printStackTrace();

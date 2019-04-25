@@ -102,7 +102,7 @@ public class GrantNumberRecordController {
                 pn = "1";
             }
             int pageNum = Integer.valueOf(pn);
-            page.setPageSize(3);
+            page.setPageSize(10);
             page.setTotalRecord(grantNumberRecordService.getGrantNumberRecordCount(company.getCompanyId(),recordType));
             if(pageNum>page.getTotalPage()){
                 pageNum = page.getTotalPage();

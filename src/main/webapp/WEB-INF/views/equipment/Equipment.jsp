@@ -12,39 +12,41 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="css/Equipment.css">
-<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery/jquery.min.js"></script>
-<link rel="stylesheet"  href="css/global.css"/>
-<link rel="stylesheet" href="css/pagination.css" />
 <html>
 <head>
     <base href="<%=basePath%>">
     <title>Title</title>
 </head>
 <body>
-    <div style=" width: 100%;height:120px;float: left;">
+    <div style=" width: 100%;height:150px;float: left;border-top: #796AEE 2px solid;background-color: #fff;">
         <div>
-            <div>
-                <select  class="form-control1" id="multiselect_to_1"multiple="multiple"size="200"style="height: 100px;width: 200px;float: left;">
+            <div style="float: left;margin-top: 20px;margin-left: 10px;">
+                <span style="float: left;">代理商：</span>
+                <select  class="form-control1" id="multiselect_to_1" multiple="multiple" size="200" style="height: 100px;width: 200px;">
                     <c:forEach items="${CompanyList}" var="company">
                         <c:if test="${company.companyUserType==0}">
                             <option value="${company.companyId}">${company.companyName}</option>
                         </c:if>
                     </c:forEach>
-                </select></div>
-            <div>
-                <select  class="form-control" id="multiselect_to_2"multiple="multiple"size="200"style="height: 100px;width: 200px;float: left;">
-                </select></div>
-            <div><input type="date" style="height: 32px;" class="form-control" id="multiselect_to_3" /><br>
-                 <input type="date" style="height: 32px;" class="form-control" id="multiselect_to_4" /></div>
+                </select>
+            </div>
+            <div style="float: left;margin-top: 20px;margin-left: 10px;">
+                <span style="float: left;">项目：</span>
+                <select  class="form-control" id="multiselect_to_2" multiple="multiple" size="200"style="height: 100px;width: 200px;">
+                </select>
+            </div>
+            <div style="float: left;margin-top: 20px;margin-left: 10px;">
+                <span>起始时间：</span><input type="text" id="multiselect_to_3" placeholder="YYYY-MM-DD"><br>
+                <span>截至时间：</span><input type="text" id="multiselect_to_4" placeholder="YYYY-MM-DD"><br>
+                        <%--<input type="hidden" id="multiselect_to_3" class="form-control">
+                        <input type="hidden" id="multiselect_to_4" class="form-control">--%>
+                <%--<input type="date" style="height: 32px;" class="form-control" id="multiselect_to_3" />
+                 <input type="date" style="height: 32px;" class="form-control" id="multiselect_to_4" />--%></div>
         </div>
-
-
     </div>
-    <div style="width: 100%;height: 600px;float: left;border-top: #00F7DE 2px solid;background-color: #fff;">
+
+
+    <div style="width: 100%;height: 660px;float: left;border-top: #796AEE 2px solid;background-color: #fff;margin-top: 10px">
         <div style="float: left;width: 96%;height: 40px;border:1px solid #c8cbcf;margin-left: 2%;background-color: #fff;margin-top: 30px;">
             <div style="width: 15%;height: 40px;float: left;line-height: 40px;text-align: center ;font-size: 13px;font-weight: bold; ">设备ID<input type="hidden" id="cId" VALUE="${sessionScope.Company.companyUserType}"></div>
             <div style="width: 9%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">代理</div>
@@ -67,13 +69,31 @@
     </div>
 
     <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/rolldate.min.js"></script>
+    <script>
+        window.onload = function(){
+            new rolldate.Date({
+                el:'#multiselect_to_3',
+                format:'YYYY-MM-DD',
+                beginYear:2000,
+                endYear:2100
+            })
+            new rolldate.Date({
+                el:'#multiselect_to_4',
+                format:'YYYY-MM-DD',
+                beginYear:2000,
+                endYear:2100
+            })
+        }
+    </script>
+
     <script type="text/javascript">
         $(function () {
             $("#multiselect_to_1").change(function () {
                 var multiselect_to_1 = $(this).val();
                 $("#multiselect_to_2").html("");
                 $.ajax({
-                    url: "/api/equipment/getProjectList",
+                    url: "api/equipment/getProjectList",
                     data: {"multiselect_to_1":""+multiselect_to_1},
                     type: "POST",
                     dataType: "json",
@@ -90,8 +110,8 @@
                     }
                 });
             });
-            
-            $(".form-control").change(function () {
+
+            function conditionalQuery(){//自定义函数
                 var multiselect_to_2 = $("#multiselect_to_2").val();
                 var multiselect_to_3 = $("#multiselect_to_3").val();
                 var multiselect_to_4 = $("#multiselect_to_4").val();
@@ -165,7 +185,7 @@
                                 html = html + apkEdition;
                             }
                             html = html + "</div><div style=\"float: left;width: 15%;text-align: center;padding-top:15px;color: #0069D9;\">"+foundtime+"</div>\n"+
-                                    "            <div style=\"float: left;width: 15%;text-align: center;padding-top:15px;color: #0069D9;\">";
+                                "            <div style=\"float: left;width: 15%;text-align: center;padding-top:15px;color: #0069D9;\">";
                             if (logintime==null||logintime=="") {
                                 html = html + "暂无数据";
                             }else {
@@ -204,6 +224,18 @@
                         });
                     }
                 });
+            }
+
+            $("#multiselect_to_4").change(function () {
+                alert($(this).val());
+            });
+
+            $("#multiselect_to_3").change(function () {
+                alert($(this).val());
+            });
+
+            $(".form-control").change(function () {
+
             });
 
             $(".record").click(function () {

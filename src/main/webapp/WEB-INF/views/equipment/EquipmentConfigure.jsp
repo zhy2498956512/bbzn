@@ -27,9 +27,10 @@
 
     <style>
         .xmxq{
-            width: 95%;
-            margin: 0 auto;
-            border-top: 2px solid skyblue;
+            width: 99%;
+            margin-top: 8px;
+            margin-left: 8px;
+            border-top: 2px solid #796AEE;
             height: 350px;
             background-color: #fff;
             border-radius:5px ;
@@ -118,7 +119,7 @@
 <body style="background-color: #ccc;">
 <div class="xmxq">
     <div class="xmxq_1">
-        <span id="regression">返回设备列表</span>
+        <span id="regression" style="background-color: #796AEE;">返回设备列表</span>
         <span>设备的详细信息</span><input type="hidden" id="projectId" value="${projectId}"><input type="hidden" id="equipmentId" value="${equipment.equipmentId}">
     </div>
     <div class="xmxq_zt">

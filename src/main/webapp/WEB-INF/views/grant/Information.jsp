@@ -38,74 +38,81 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        body{
+            background-color: #EEF5F9;
+        }
+    </style>
 </head>
 <body>
-<div style="border: 0px solid #000000;height: 150px;width: 1200px;margin: 10px auto;"> <!-- 进度条区域一个大框border删除去掉边框，margin调整位置 -->
-    <div style="float: left;font-size: 20px;">当前代理授权数使用情况:(可用数量<span style="font-size: 15px; padding: 5px 10px;background-color: yellowgreen;border-radius:5px;color: #fff;margin: 0 10px;" id="maxValue">${length2}</span>)
-    </div>
-    <div class="blank1"><input type="hidden" id="hideButton"></div><br>
-    <input type="hidden" value="1"><div class="record" data-toggle="modal" style="float: left;color: skyblue;cursor: pointer;font-size: 18px;"  data-target="#myModal3">(查看授权记录)</div>
-    <div class="blank1"></div>
-    <!-- 进度条 -->
-    <div class="progress" style="width: 500px;float: left;">
-        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" id="strip">
+<div style=" width: 99%;height:180px;float: left;border-top: #796AEE 2px solid;background-color: #fff;margin-top: 8px;margin-left: 8px;">
+    <div style="margin-left: 18%;margin-top: 25px;">
+        <div style="float: left;font-size: 20px;">当前代理授权数使用情况:(可用数量<span style="font-size: 15px; padding: 5px 10px;background-color: yellowgreen;border-radius:5px;color: #fff;margin: 0 10px;" id="maxValue">${length2}</span>)
         </div>
-    </div>
-    <!-- 进度条结束 -->
-    <input type="hidden" value="${length1}" id="total"><input type="hidden" value="${length2}" id="already">
-    <div style="float: left;margin: -5px 0 0 0;">
-        <span style="padding: 5px 10px;background-color: yellowgreen;border-radius:5px;color: #fff;margin: 0 10px;">${length2}</span>/
-        <span style="padding: 5px 10px;background-color: skyblue;border-radius:5px;color: #fff;margin: 0 10px;">${length1}</span>
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            充值授权数
-        </button>
-        <button id="generate" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal4">
-            生成序列号
-        </button>
-        <button id="uploadFiles" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal8">
-            上传序列号文件
-        </button>
+        <div class="blank1"><input type="hidden" id="hideButton"></div><br>
+        <input type="hidden" value="1"><div class="record" data-toggle="modal" style="float: left;color: skyblue;cursor: pointer;font-size: 18px;"  data-target="#myModal3">(查看授权记录)</div>
+        <div class="blank1"></div>
+        <!-- 进度条 -->
+        <div class="progress" style="width: 500px;float: left;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" id="strip">
+            </div>
+        </div>
+        <!-- 进度条结束 -->
+        <input type="hidden" value="${length1}" id="total"><input type="hidden" value="${length2}" id="already">
+        <div style="float: left;margin: -5px 0 0 0;">
+            <span style="padding: 5px 10px;background-color: yellowgreen;border-radius:5px;color: #fff;margin: 0 10px;">${length2}</span>/
+            <span style="padding: 5px 10px;background-color: skyblue;border-radius:5px;color: #fff;margin: 0 10px;">${length1}</span>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                充值授权数
+            </button>
+            <button id="generate" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal4">
+                生成序列号
+            </button>
+            <button id="uploadFiles" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal8">
+                上传序列号文件
+            </button>
+        </div>
     </div>
 </div>
 
-<div style="margin: 0 0 5px 83px"><button id="savaProject" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-    新建项目
-</button></div>
-<div style="width: 90%;height: 400px;border: 1px solid #B9BBBE;border-radius:5px ;background-color: #fff;margin: 0 auto;">
-    <div style="width: 100%;height: 50px;border-bottom: 2px solid #B9BBBE;float: left;font-size: 15px;font-weight: bold;line-height: 50px;">
+<div style=" width: 99%;height:600px;float: left;border-top: #796AEE 2px solid;background-color: #fff;margin-top: 8px;margin-left: 8px;">
+    <button style="margin-top: 8px;margin-left: 8px;" id="savaProject" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+        新建项目
+    </button>
+    <div style="margin-left: 8px;margin-top: 8px;border-top: 2px solid #B9BBBE;width: 99%;"></div>
+    <div style="width: 99.3%;height: 50px;float: left;font-size: 15px;font-weight: bold;line-height: 50px;margin-left: 8px;">
         <div style="width: 30%;height: 50px;float: left;text-align: center;">项目名称</div>
-        <div style="width: 10%;height: 50px;border-left: 1px solid #B9BBBE;float: left;text-align: center;">项目类型</div>
-        <div style="width: 15%;height: 50px;border-left: 1px solid #B9BBBE;float: left;text-align: center;">创建时间</div>
-        <div style="width: 15%;height: 50px;border-left: 1px solid #B9BBBE;float: left;text-align: center;">修改时间</div>
-        <div style="width: 30%;height: 50px;border-left: 1px solid #B9BBBE;float: left;text-align: center;">操作</div>
+        <div style="width: 10%;height: 50px;float: left;text-align: center;">项目类型</div>
+        <div style="width: 15%;height: 50px;float: left;text-align: center;">创建时间</div>
+        <div style="width: 15%;height: 50px;float: left;text-align: center;">修改时间</div>
+        <div style="width: 30%;height: 50px;float: left;text-align: center;">操作</div>
     </div>
-   <div class="row pre-scrollable" style="float: left;width: 99.3%;height: 400px;margin: 0px 0 0 10px;">
-       <div style="float: left;width: 99.3%;height: 300px;margin: 0px 0 0 0 ;">
-        <c:forEach items="${projectList}" var="project">
-                <div style="width: 30%;height: 50px;float: left;border-bottom: 1px solid #B9BBBE;line-height: 50px;">
+    <div class="row pre-scrollable" style="float: left;width: 100%;height: 400px;margin-left: 8px;margin-top: 8px;">
+        <div style="float: left;width: 100%;height: 300px;margin: 0px 0 0 0 ;font-size: 18px;line-height: 50px;">
+            <c:forEach items="${projectList}" var="project">
+                <div style="width: 29.9%;height: 50px;float: left;border-top: 1px solid #B9BBBE;text-align: center;">
                     <input type="hidden" value="${project.projectId}">
-                    <div style="float: left;color: skyblue;cursor: pointer;font-size: 18px;text-indent: 170px;" class="jump3">${project.projectName}</div>
+                    <div style="float: left;color: skyblue;cursor: pointer;" class="jump3">${project.projectName}</div>
                 </div>
-                <input type="hidden" value="${project.projectId}">
-                <div style="width: 10%;height: 50px;float: left;cursor: pointer;border-bottom: 1px solid #B9BBBE;text-align: center;line-height: 50px;" class="updateProjectName">${project.projectTypeName}</div>
-                <div style="width: 15%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                <div style="width: 9.9%;height: 50px;float: left;cursor: pointer;border-top: 1px solid #B9BBBE;text-align: center;line-height: 50px;" class="updateProjectName">${project.projectTypeName}</div>
+                <div style="width: 14.9%;height: 50px;border-top: 1px solid #B9BBBE;float: left;text-align: center;">
                     <fmt:formatDate value="${project.projectNewdate}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
                 </div>
-                <div style="width: 15%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                <div style="width: 14.9%;height: 50px;border-top: 1px solid #B9BBBE;float: left;text-align: center;">
                     <c:if test="${project.projectUpdatedate==null}">暂无记录</c:if>
                     <c:if test="${project.projectUpdatedate!=null}">
                         <fmt:formatDate value="${project.projectUpdatedate}" type="date" pattern="yyyy-MM-dd　HH:mm:ss"/>
                     </c:if>
                 </div>
-                <div style="width: 30%;height: 50px;border-bottom: 1px solid #B9BBBE;float: left;text-align: center;line-height: 50px;">
+                <div style="width: 29.9%;height: 50px;border-top: 1px solid #B9BBBE;float: left;text-align: center;">
                     <input type="button" value="配置语言" style=""
                            class="btn btn-primary configure" data-toggle="modal" data-target="#myModal6">
                     <input type="hidden" value="${project.projectId}">
                     <input type="button" value="推送APK升级" class="btn btn-primary upload"  data-toggle="modal" data-target="#myModal7">
                     <input type="button" value="项目配置" class="btn btn-primary projectConfigure">
                 </div>
-        </c:forEach>
-       </div>
+            </c:forEach>
+        </div>
     </div>
 </div>
 

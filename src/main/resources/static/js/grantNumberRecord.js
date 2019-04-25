@@ -153,7 +153,7 @@ $(function () {
                     $("#companyName").html("");
                     $("#companyName").html(companyName);
                     var feedbacktime = data[num].feedbacktime;
-                    html = html + "<div style='width: 96%;float: left;border-bottom: 1px solid #D6D8DB;height: 80px;font-size: 14px;'>"+
+                    html = html + "<div style='width: 96%;float: left;border-bottom: 1px solid #D6D8DB;font-size: 14px;'>"+
                     "<div style='float: left;width: 5%;text-align: center;line-height: 80px;'>"+grantNumberRecordAmount+"</div>"+
                         "<div style='float: left;width: 35%;text-align: center;line-height: 80px;'>";
                         if(grantNumberRecordRemark==null||grantNumberRecordRemark==""){

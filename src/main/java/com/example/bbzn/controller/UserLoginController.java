@@ -182,7 +182,7 @@ public class UserLoginController {
     /*
      * 用户验证mail
      * */
-    private String mailCode = "";
+    /*private String mailCode = "";
     @RequestMapping(value = "/verificationMail", method = RequestMethod.POST)
     @ResponseBody
     public String verificationMail(String mail,String judge){
@@ -242,12 +242,12 @@ public class UserLoginController {
             e.printStackTrace();
             return commonResponse.commonErrorReturn(500,"系统异常");
         }
-    }
+    }*/
 
     /*
      * 用户验证mail
      * */
-    /*private String mailCode = "";
+    private String mailCode = "";
 
     @RequestMapping(value = "/verificationMail", method = RequestMethod.POST)
     @ResponseBody
@@ -274,7 +274,7 @@ public class UserLoginController {
             e.printStackTrace();
             return commonResponse.commonErrorReturn(500,e.toString());
         }
-    }*/
+    }
 
 
     /*

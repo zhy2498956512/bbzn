@@ -5,6 +5,6 @@
 %>
 <base href="<%=basePath%>">
 <div class="action">
-    <iframe  name=rightFrame style="WIDTH: 100%; HEIGHT: 100%" <%--src="../../welcome.jsp"--%>
+    <iframe  name=rightFrame style="WIDTH: 100%; HEIGHT: 839px;" <%--src="../../welcome.jsp"--%>
              frameborder=0></iframe>
 </div>

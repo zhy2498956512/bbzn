@@ -38,22 +38,14 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
     <style>
-        .xmxq{
-            width: 95%;
-            margin: 0 auto;
-            border-top: 2px solid skyblue;
-            height: 350px;
-            background-color: #fff;
-            border-radius:5px ;
+        body{
+            background-color: #EEF5F9;
         }
         .xmxq_1{
             float: left;
             width: 100%;
-
             font-size: 18px;
-
             height: 48px;
         }
         .xmxq_1 span{
@@ -82,11 +74,13 @@
     </style>
 </head>
 <body>
-<div style=" width: 100%;height:80px;float: left;">
+<div style=" width: 99%;height:50px;margin-top: 8px;margin-left: 8px;border-top: #796AEE 2px solid;background-color: #fff;">
     <div class="xmxq_1">
-        <span id="regression">返回项目列表</span>
+        <span id="regression" style="background-color: #796AEE;">返回项目列表</span>
         <span>设备列表</span>
     </div>
+</div>
+<div style="width: 99%;height: 760px;float: left;border-top: #796AEE 2px solid;background-color: #fff;margin-top: 8px;margin-left: 8px;">
     <div style="border-top: 1px solid #ccc;">
         <br>
         &nbsp;&nbsp;<input type="button" value="新增设备" style=""
@@ -99,21 +93,9 @@
         &nbsp;&nbsp;<span>序列号：</span><input type="text" id="searchEquipment"><input type="hidden" class="projectId1" value="${projectId}">
         <input type="hidden" value="1"><input type="button" value="搜索" class="record">
     </div>
-</div>
-<%--<div style=" width: 100%;height:40px;float: left;">
-    <div>
-        <br><br>
-        &nbsp;&nbsp;<input type="button" value="新增设备" style=""
-               class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
-        <select id="equipmentType">
-            <option value="1">已激活设备</option>
-            <option value="2">入库但未激活</option>
-            <option value="3">未入库被拦截</option>
-        </select>
-    </div>
-</div>--%>
-<div style="width: 100%;height: 600px;float: left;border-top: #00F7DE 2px solid;background-color: #fff;">
-    <div style="float: left;width: 96%;height: 40px;border:1px solid #c8cbcf;margin-left: 2%;background-color: #fff;margin-top: 30px;">
+
+
+    <div style="float: left;width: 100%;height: 40px;border:1px solid #c8cbcf;margin-left: 2%;background-color: #fff;margin-top: 30px;">
         <div style="width: 14%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">设备ID</div>
         <div style="width: 13%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">系统版本</div>
         <div style="width: 13%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">APK版本</div>
@@ -121,7 +103,7 @@
         <div style="width: 20%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">最近登陆时间</div>
         <div style="width: 20%;height: 40px;float: left;line-height: 40px; border-left:1px solid #c8cbcf;text-align: center ;font-size: 13px;font-weight: bold; ">操作</div>
     </div>
-    <div class="pre-scrollable" style="float: left;width: 97.5%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="viewRecord">
+    <div class="pre-scrollable" style="float: left;width: 100%;height: 400px;margin-left: 2%;overflow-y:scroll;" id="viewRecord">
         <c:forEach items="${page.list}" var="equipment" >
             <div style="width: 100%;height: 50px;">
                 <input type="hidden" value="${equipment.equipmentId}">
