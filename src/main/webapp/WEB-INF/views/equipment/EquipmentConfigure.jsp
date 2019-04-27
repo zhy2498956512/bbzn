@@ -80,20 +80,21 @@
         }
         .zt_bt .zt_ul{
             float: right;
-
         }
         .zt_ul li{
-            line-height: 40px;
             list-style:none;
+            margin-top: 13px;
         }
         .zt_index{
             float: left;
+        }
+        .zt_index ul{
+            list-style:none;
+        }
+        .zt_index li{
+            margin-top: 11px;
+        }
 
-        }
-        .zt_ul input{
-            background-color: lavender;border: 1px solid #ccc;width: 324px;height: 24px;
-            text-indent: 15px;
-        }
         .zt_ul span{
             margin-left: 10px;
             padding: 6px 12px;
@@ -135,7 +136,7 @@
             </ul>
         </div>
         <div class="zt_index">
-            <ul class="zt_ul">
+            <ul>
                 <li><input type="text" value="${equipment.grantCode}" disabled="disabled" /></li>
                 <li><input type="text" value="${equipment.companyName}" disabled="disabled" /></li>
                 <li><input type="text" value="${equipment.projectName}" disabled="disabled" id="projectName" /></li>

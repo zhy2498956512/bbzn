@@ -11,7 +11,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Company company = (Company)request.getSession().getAttribute("Company");
         if(company==null||company.getCompanyState()==0){
-            response.sendRedirect("http://119.23.210.209:80/bbzn/login.jsp");
+            response.sendRedirect("http://119.23.210.209:8080/bbzn/login.jsp");
             return false;
         }else{
             return true;

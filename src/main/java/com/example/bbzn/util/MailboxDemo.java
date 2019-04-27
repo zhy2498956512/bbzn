@@ -22,7 +22,7 @@ public class MailboxDemo {
         String host = "smtp.ym.163.com";//163企业邮箱smtp
         StringBuffer content = new StringBuffer();//内容
         content.append("<html><head></head>");
-        content.append("<body><div><h2>邮箱验证</h2>亲爱的用户:您好!感谢您使用VTrans。您正在进行邮箱验证，请在验证码输入框中输入此次验证码（5分钟内有效)：<a href='javascript:;' >").append(nuberm).append("</a>以完成验证。如非本人操作，请忽略此邮件,由此给您带来的不便请谅解!</div>");
+        content.append("<body><div><h2>激活验证</h2>亲爱的用户:您好!感谢您使用VTrans。您正在进行邮箱验证，请在验证码输入框中输入此次验证码（5分钟内有效)：<a href='javascript:;' >").append(nuberm).append("</a>以完成验证。如非本人操作，请忽略此邮件,由此给您带来的不便请谅解!</div>");
         content.append("<div><span style ='float: right;'>贝铂智能</span></div>");
         content.append("</body></html>");
         sendHtmlMail(name,arr,subject,content.toString(),host,comMailbox,comMailboxPassword);

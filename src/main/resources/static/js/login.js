@@ -14,8 +14,8 @@ $(function(){
                     if (data == 1) {
                         var browser = navigator.userAgent
                         if(browser.indexOf("Chrome")!= -1 || browser.indexOf("Firefox") != -1) location.href="api/login/index";
-                        /*else location.href = "/bbzn/api/login/index";*/
-                        else location.href = "/api/login/index";
+                        else location.href = "/bbzn/api/login/index";
+                        /*else location.href = "/api/login/index";*/
                     } else if (data == 2) {
                         alert("该用户已被停用，请联系管理员！！！");
                     } else {
@@ -25,4 +25,11 @@ $(function(){
             });
         }
     });
+
+    $(document).keydown(function(event){
+        if(event.keyCode==13){
+            $("#login").click();
+        }
+    });
+
 });

@@ -246,55 +246,38 @@ public class EquipmentController {
             response.setCharacterEncoding("UTF-8");
             Page page = new Page();
             String multiselect_to_2 = (String) request.getParameter("multiselect_to_2");
-            String multiselect_to_3 = (String) request.getParameter("multiselect_to_3");
-            String multiselect_to_4 = (String) request.getParameter("multiselect_to_4");
-            if(multiselect_to_2==null){
-                multiselect_to_2="";
+            String date = (String) request.getParameter("date");
+            String multiselect_to_3 = "";
+            String multiselect_to_4 = "";
+            if(date!=null&&!"".equals(date)&&!"".equals(" ~ ")){
+                multiselect_to_3 = date.substring(0, date.indexOf(" ~ "));//截取@之前的字符串
+                multiselect_to_4 = date.substring(date.indexOf(" ~ ")+3);
+                if(multiselect_to_3!=null&&!"".equals(multiselect_to_3)) multiselect_to_3+=" 00:00:00";
+                else multiselect_to_3="";
+                if(multiselect_to_4!=null&&!"".equals(multiselect_to_4)) multiselect_to_4+=" 00:00:00";
+                else multiselect_to_4="";
             }
-            if(multiselect_to_3==null||multiselect_to_3==""){
-                multiselect_to_3="";
-            }else {
-                multiselect_to_3+=" 00:00:00";
-            }
-            if(multiselect_to_4==null||multiselect_to_4==""){
-                multiselect_to_4="";
-            }else {
-                multiselect_to_4+=" 00:00:00";
-            }
+            if(multiselect_to_2==null) multiselect_to_2="";
             String pn = (String) request.getParameter("pageNum");
-            if(pn==null){
-                pn = "1";
-            }
+            if(pn==null||"".equals(pn)) pn = "1";
             int pageNum = Integer.valueOf(pn);
-            page.setPageSize(5);
+            page.setPageSize(10);
             List<Integer> intlist = new ArrayList<Integer>();
-            String[] strarray=multiselect_to_2.split(",");
-            for (int i = 0; i < strarray.length; i++){
-                intlist.add(Integer.valueOf(strarray[i]));
-            }
+            String[] strarray = null;
+            if(multiselect_to_2!=null&&!"".equals(multiselect_to_2)) strarray=multiselect_to_2.split(",");
+            else strarray=new String[0];
+            for (int i = 0; i < strarray.length; i++) intlist.add(Integer.valueOf(strarray[i]));
             page.setTotalRecord(equipmentService.getEquipmentCount(intlist,multiselect_to_3,multiselect_to_4,0,""));
-            if(pageNum>page.getTotalPage()){
-                pageNum = page.getTotalPage();
-            }
-            if(pageNum<1){
-                pageNum = 1;
-            }
+            if(pageNum>page.getTotalPage()) pageNum = page.getTotalPage();
+            if(pageNum<1) pageNum = 1;
             page.setPageNum(pageNum);
             List<Equipment> list = equipmentService.getEquipmentList(intlist,multiselect_to_3,multiselect_to_4,0,"",page.getPageNum(),page.getPageSize());
             DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             List<APK> apks = apkService.getAPKList();
             for(Equipment equipment:list){
-                if(equipment.getEquipmentFoundtime()!=null){
-                    equipment.setFoundtime(dFormat.format(equipment.getEquipmentFoundtime()));
-                }
-                if(equipment.getEquipmentLogintime()!=null){
-                    equipment.setLogintime(dFormat.format(equipment.getEquipmentLogintime()));
-                }
-                for(APK apk:apks){
-                    if(equipment.getApkId()==apk.getApkId()){
-                        equipment.setApkEdition(apk.getApkEdition());
-                    }
-                }
+                if(equipment.getEquipmentFoundtime()!=null) equipment.setFoundtime(dFormat.format(equipment.getEquipmentFoundtime()));
+                if(equipment.getEquipmentLogintime()!=null) equipment.setLogintime(dFormat.format(equipment.getEquipmentLogintime()));
+                for(APK apk:apks) if(equipment.getApkId()==apk.getApkId()) equipment.setApkEdition(apk.getApkEdition());
             }
             page.setList(list);
             String str1 = null;
